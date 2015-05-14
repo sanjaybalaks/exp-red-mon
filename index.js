@@ -48,6 +48,13 @@ app.get('/redis-mongo', function (req, res) {
     console.log({success:'true'});
 });
 
+if(process.env.NODE_ENV){
+    console.log('development');
+    if(process.env.NODE_ENV=='dev'){
+        start();
+    }
+}
+
 function start(){
     server= app.listen(3000, function () {
         console.log('test app started ');
@@ -57,6 +64,7 @@ function stop(){
     console.log('test app stopped ');
     server.close();
 }
+
 exports.start = start;
 exports.stop=stop;
 exports.app = app;
